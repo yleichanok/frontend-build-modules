@@ -1,6 +1,6 @@
 /**
 * 
-* Css concatenator 0.1.
+* Css concatenator.
 * 
 * Usage:
 * 

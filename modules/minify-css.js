@@ -1,6 +1,6 @@
 /**
 * 
-* CSS minificator 0.1.
+* CSS minificator.
 * 
 * Usage:
 * 

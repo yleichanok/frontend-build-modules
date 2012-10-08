@@ -1,10 +1,11 @@
 /**
 * 
-* JS validator 0.1.
+* JS validator.
 * 
 * Usage:
 * 
 * var vjs = require('./validate-js');
+* vjs.validate('C:/work/js/1.js');
 * vjs.validate(['C:/work/js/1.js', 'C:/work/js/2.js']);
 * vjs.validateFolder('C:/work/js/');
 *
@@ -15,27 +16,34 @@
     'use strict';
     
     var fs = require('fs'),
-        jshint = require('../lib/jshint');
-    
-    /**
-    * Validates files specified in the array.
-    * @param {String} inputFiles Array of file paths.
-    */
-    exports.validate = function(inputFiles) {
+        jshint = require('../lib/jshint'),
 
-        if (!inputFiles || !Array.isArray(inputFiles)) {
-            throw new Error('Input files not specified.');
-        }
-
-        for (var i = 0, l = inputFiles.length; i < l; i++) {
-            var filePath = inputFiles[i],
-                result = jshint.JSHINT(fs.readFileSync(filePath, 'utf8'), {});
+        validate = function(filePath) {
+            var result = jshint.JSHINT(fs.readFileSync(filePath, 'utf8'));
             if (result === true) {
                 console.log(filePath + ': passed');
             } else {
                 console.warn(filePath + ': failed');
                 console.log(jshint.JSHINT.errors);
             }
+        };
+    
+    /**
+    * Validates files specified in the array.
+    * @param {String|Array} files File path or an array of file paths.
+    */
+    exports.validate = function(files) {
+
+        if (!files || (typeof files !== 'string' && !Array.isArray(files))) {
+            throw new Error('Input files not specified.');
+        }
+
+        if (typeof files === 'string') {
+            files = [files];
+        }
+
+        for (var i = 0, l = files.length; i < l; i++) {
+            validate(files[i]);
         }
 
     };
@@ -57,13 +65,7 @@
                     fileInfo = fs.statSync(filePath);
 
                 if (fileInfo.isFile() && filePath.indexOf('.js') > -1) {
-                    var result = jshint.JSHINT(fs.readFileSync(filePath, 'utf8'), {});
-                    if (result === true) {
-                        console.log(filePath + ': passed');
-                    } else {
-                        console.warn(filePath + ': failed');
-                        console.log(jshint.JSHINT.errors);
-                    }
+                    validate(filePath);
                 } else if (fileInfo.isDirectory()) {
                     processFolder(filePath + '/');
                 }

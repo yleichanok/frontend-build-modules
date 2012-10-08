@@ -1,6 +1,6 @@
 /**
 * 
-* JS concatenator 0.1.
+* JS concatenator.
 * 
 * Usage:
 * 

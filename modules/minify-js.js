@@ -1,6 +1,6 @@
 /**
 * 
-* JS minificator 0.1.
+* JS minificator.
 * 
 * Usage:
 * 

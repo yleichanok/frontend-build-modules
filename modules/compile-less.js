@@ -1,11 +1,11 @@
 /**
 * 
-* LESS compilator 0.1.
+* LESS compilator.
 * 
 * Usage:
 * 
 * var cless = require('./compile-less');
-* cless.compile('C:/work/css/input.less', 'C:/work/css/output.less');
+* cless.compile('C:/work/css/input.less', 'C:/work/css/output.css');
 *
 */
 /*jshint forin:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true, strict:true, undef:true, unused:true, curly:true, node:true, indent:4, maxerr:50, globalstrict:true, white:false */
