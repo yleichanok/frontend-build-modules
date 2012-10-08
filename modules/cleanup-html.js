@@ -16,10 +16,16 @@
     'use strict';
     
     var fs = require('fs'),
+
         cleanup = function(filePath) {
             var fileContents = fs.readFileSync(filePath, 'utf8');
+
+            // remove tabs
             fileContents = fileContents.replace(/\t/g, '');
+
+            // remove duplicated new lines
             fileContents = fileContents.replace(/\n\n/g, '');
+
             fs.writeFileSync(filePath, fileContents, 'utf8');
         };
     
@@ -45,12 +51,12 @@
 
     /**
     * Removes unnecessary tabs and new lines from all html files in the folder specified.
-    * @param {String} inputPath Folder to look at.
+    * @param {String} path Folder to look at.
     * @param {String} requiredExtension File extension (optional, .html by default).
     */
-    exports.cleanupFolder = function(inputPath, requiredExtension) {
+    exports.cleanupFolder = function(path, requiredExtension) {
 
-        if (!inputPath || typeof inputPath !== 'string') {
+        if (!path || typeof path !== 'string') {
             throw new Error('Input path not specified');
         }
 
@@ -72,7 +78,7 @@
             }
         };
 
-        processFolder(inputPath);
+        processFolder(path);
 
     };
 
