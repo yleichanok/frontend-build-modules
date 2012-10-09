@@ -50,11 +50,11 @@
 
     /**
     * Validates all javascript files in the folder specified and inner folders.
-    * @param {String} inputPath Folder to look at.
+    * @param {String} path Folder to look at.
     */
-    exports.validateFolder = function(inputPath) {
+    exports.validateFolder = function(path) {
 
-        if (!inputPath || typeof inputPath !== 'string') {
+        if (!path || typeof path !== 'string') {
             throw new Error('Input path not specified');
         }
 
@@ -72,7 +72,7 @@
             }
         };
 
-        processFolder(inputPath);
+        processFolder(path);
 
     };
 
