@@ -6,7 +6,7 @@
 * 
 * var mjs = require('./minify-js');
 * mjs.minify('C:/work/js/1.js');
-* mjs.minify('C:/work/js/input.js', 'C:/work/js/output.js');
+* mjs.minify(['C:/work/js/1.js', 'C:/work/js/2.js']);
 * mjs.minifyFolder('C:/work/js/');
 *
 */
